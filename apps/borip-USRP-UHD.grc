@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='ASCII'?>
 <flow_graph>
-  <timestamp>Tue Nov 20 23:43:41 2012</timestamp>
+  <timestamp>Sat Feb  1 00:00:03 2014</timestamp>
   <block>
     <key>options</key>
     <param>
@@ -64,11 +64,80 @@
     <key>variable</key>
     <param>
       <key>id</key>
-      <value>adc_freq</value>
+      <value>antenna</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>"RX2"</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(17, 376)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>id</key>
+      <value>tune_tolerance</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(291, 428)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>id</key>
+      <value>samp_rate</value>
     </param>
     <param>
       <key>_enabled</key>
       <value>False</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(21, 295)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>id</key>
+      <value>adc_freq</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
     </param>
     <param>
       <key>value</key>
@@ -91,7 +160,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>False</value>
+      <value>True</value>
     </param>
     <param>
       <key>value</key>
@@ -110,19 +179,19 @@
     <key>variable</key>
     <param>
       <key>id</key>
-      <value>freq</value>
+      <value>antenna_0</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>False</value>
+      <value>True</value>
     </param>
     <param>
       <key>value</key>
-      <value>0</value>
+      <value>"TX/RX"</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1101, 250)</value>
+      <value>(884, 314)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -137,7 +206,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>False</value>
+      <value>True</value>
     </param>
     <param>
       <key>value</key>
@@ -156,7 +225,7 @@
     <key>variable</key>
     <param>
       <key>id</key>
-      <value>antenna_0</value>
+      <value>serial</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -164,11 +233,34 @@
     </param>
     <param>
       <key>value</key>
-      <value>"TX/RX"</value>
+      <value>lambda: self.source._get_u().serial_number()</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(884, 314)</value>
+      <value>(558, 329)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>id</key>
+      <value>serial</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>lambda: self.source.get_usrp_info().get("mboard_serial")</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(558, 390)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -191,7 +283,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(869, 221)</value>
+      <value>(885, 223)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -202,7 +294,30 @@
     <key>variable</key>
     <param>
       <key>id</key>
-      <value>samp_rate</value>
+      <value>freq</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1101, 250)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>id</key>
+      <value>set_samp_rate</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -210,11 +325,103 @@
     </param>
     <param>
       <key>value</key>
-      <value>adc_freq/decim</value>
+      <value>lambda r: self.source.set_decim_rate(self.master_clock()//r)</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1101, 128)</value>
+      <value>(291, 245)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>id</key>
+      <value>tr_to_list</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>lambda req, tr: [req, tr.baseband_freq, tr.dxc_freq + tr.residual_freq, tr.dxc_freq]</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(559, 43)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>id</key>
+      <value>source_name</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>lambda: "USRP (" + serial() + ")"</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(558, 267)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>id</key>
+      <value>gain_range</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>lambda: self.source._subdev.gain_range()</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(558, 207)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>id</key>
+      <value>antennas</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>["TX/RX","RX2","RXA","RXB","RXAB"]</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1101, 372)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -248,124 +455,111 @@
     <key>variable</key>
     <param>
       <key>id</key>
-      <value>set_samp_rate</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>lambda r: self.source.set_decim_rate(self.master_clock()//r)</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(291, 245)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>parameter</key>
-    <param>
-      <key>id</key>
-      <value>antenna</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>label</key>
-      <value>Antenna</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>TX/RX</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>short_id</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(789, 314)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>parameter</key>
-    <param>
-      <key>id</key>
-      <value>unit</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>label</key>
-      <value>Unit</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>intx</value>
-    </param>
-    <param>
-      <key>short_id</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(789, 128)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>parameter</key>
-    <param>
-      <key>id</key>
-      <value>addr</value>
+      <value>samp_rate</value>
     </param>
     <param>
       <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
-      <key>label</key>
-      <value>Address</value>
-    </param>
-    <param>
       <key>value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>short_id</key>
-      <value>a</value>
+      <value>adc_freq/decim</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(789, 29)</value>
+      <value>(1101, 128)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>id</key>
+      <value>set_antenna</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>lambda a: self.source._subdev.select_rx_antenna(a)</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(884, 376)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>id</key>
+      <value>master_clock</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>lambda: self.source._get_u().fpga_master_clock_freq()</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(558, 146)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>id</key>
+      <value>source_name</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>lambda: "USRP (" + self.source.get_usrp_info().get("mboard_id") + ")"</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(558, 456)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>id</key>
+      <value>set_freq</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>lambda f: self.tr_to_list(f, self.source._get_u().tune(0, self.source._subdev, f))</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(291, 367)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -411,7 +605,7 @@
     <key>parameter</key>
     <param>
       <key>id</key>
-      <value>subdev</value>
+      <value>addr</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -419,7 +613,7 @@
     </param>
     <param>
       <key>label</key>
-      <value>Sub Dev</value>
+      <value>Address</value>
     </param>
     <param>
       <key>value</key>
@@ -431,11 +625,11 @@
     </param>
     <param>
       <key>short_id</key>
-      <value>s</value>
+      <value>a</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(883, 29)</value>
+      <value>(789, 21)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -443,22 +637,34 @@
     </param>
   </block>
   <block>
-    <key>variable</key>
+    <key>parameter</key>
     <param>
       <key>id</key>
-      <value>samp_rate</value>
+      <value>subdev</value>
     </param>
     <param>
       <key>_enabled</key>
       <value>False</value>
     </param>
     <param>
+      <key>label</key>
+      <value>Sub Dev</value>
+    </param>
+    <param>
       <key>value</key>
-      <value>0</value>
+      <value>A:A</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>string</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value>s</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(17, 318)</value>
+      <value>(892, 29)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -466,7 +672,42 @@
     </param>
   </block>
   <block>
-    <key>variable</key>
+    <key>parameter</key>
+    <param>
+      <key>id</key>
+      <value>unit</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>Unit</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>intx</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(789, 128)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>parameter</key>
     <param>
       <key>id</key>
       <value>antenna</value>
@@ -476,456 +717,24 @@
       <value>False</value>
     </param>
     <param>
-      <key>value</key>
-      <value>"TX/RX"</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(17, 376)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>id</key>
-      <value>set_antenna</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>False</value>
+      <key>label</key>
+      <value>Antenna</value>
     </param>
     <param>
       <key>value</key>
-      <value>lambda a: self.source._subdev.select_rx_antenna(a)</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(884, 376)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>id</key>
-      <value>antennas</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>["TX/RX","RX2","RXA","RXB","RXAB"]</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1101, 372)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>id</key>
-      <value>master_clock</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>lambda: self.source._get_u().fpga_master_clock_freq()</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(558, 146)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>id</key>
-      <value>gain_range</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>lambda: self.source._subdev.gain_range()</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(558, 207)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>id</key>
-      <value>set_freq</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>lambda f: self.tr_to_list(f, self.source._get_u().tune(0, self.source._subdev, f))</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(291, 367)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>id</key>
-      <value>tune_tolerance</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(291, 428)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>usrp_simple_source_x</key>
-    <param>
-      <key>id</key>
-      <value>source_legacy</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>False</value>
+      <value>RX2</value>
     </param>
     <param>
       <key>type</key>
-      <value>short</value>
+      <value>string</value>
     </param>
     <param>
-      <key>format</key>
-      <value></value>
-    </param>
-    <param>
-      <key>which</key>
-      <value>unit</value>
-    </param>
-    <param>
-      <key>decimation</key>
-      <value>256</value>
-    </param>
-    <param>
-      <key>frequency</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>gain</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>side</key>
-      <value>side</value>
-    </param>
-    <param>
-      <key>rx_ant</key>
-      <value></value>
-    </param>
-    <param>
-      <key>hb_filters</key>
+      <key>short_id</key>
       <value></value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(17, 204)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>id</key>
-      <value>serial</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>lambda: self.source._get_u().serial_number()</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(558, 329)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>id</key>
-      <value>source_name</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>lambda: "USRP (" + serial() + ")"</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(558, 267)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>id</key>
-      <value>serial</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>lambda: self.source.get_usrp_info().get("mboard_serial")</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(558, 390)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>id</key>
-      <value>source_name</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>lambda: "USRP (" + self.source.get_usrp_info().get("mboard_id") + ")"</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(558, 448)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>gr_null_source</key>
-    <param>
-      <key>id</key>
-      <value>gr_null_source_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>short</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(153, 204)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>gr_null_sink</key>
-    <param>
-      <key>id</key>
-      <value>gr_null_sink_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>short</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(200, 254)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>id</key>
-      <value>tr_to_list</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>lambda req, tr: [req, tr.baseband_freq, tr.dxc_freq + tr.residual_freq, tr.dxc_freq]</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(559, 43)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>gr_vector_to_stream</key>
-    <param>
-      <key>id</key>
-      <value>gr_vector_to_stream_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>short</value>
-    </param>
-    <param>
-      <key>num_items</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(245, 7)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>baz_udp_sink</key>
-    <param>
-      <key>id</key>
-      <value>sink</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>short</value>
-    </param>
-    <param>
-      <key>ipaddr</key>
-      <value></value>
-    </param>
-    <param>
-      <key>port</key>
-      <value>28888</value>
-    </param>
-    <param>
-      <key>psize</key>
-      <value>1472</value>
-    </param>
-    <param>
-      <key>eof</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>borip</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>status_in</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(337, 125)</value>
+      <value>(781, 314)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -955,6 +764,10 @@
       <value></value>
     </param>
     <param>
+      <key>stream_chans</key>
+      <value>[]</value>
+    </param>
+    <param>
       <key>dev_addr</key>
       <value>addr</value>
     </param>
@@ -980,7 +793,7 @@
     </param>
     <param>
       <key>sd_spec0</key>
-      <value>subdev</value>
+      <value></value>
     </param>
     <param>
       <key>clock_source1</key>
@@ -1072,19 +885,19 @@
     </param>
     <param>
       <key>samp_rate</key>
-      <value>0</value>
+      <value>samp_rate</value>
     </param>
     <param>
       <key>center_freq0</key>
-      <value>0</value>
+      <value>freq</value>
     </param>
     <param>
       <key>gain0</key>
-      <value>0</value>
+      <value>gain</value>
     </param>
     <param>
       <key>ant0</key>
-      <value></value>
+      <value>antenna</value>
     </param>
     <param>
       <key>bw0</key>
@@ -1587,6 +1400,18 @@
       <value>0</value>
     </param>
     <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
       <key>_coordinate</key>
       <value>(16, 96)</value>
     </param>
@@ -1595,30 +1420,61 @@
       <value>0</value>
     </param>
   </block>
-  <connection>
-    <source_block_id>gr_null_source_0</source_block_id>
-    <sink_block_id>sink</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>source</source_block_id>
-    <sink_block_id>gr_null_sink_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>source</source_block_id>
-    <sink_block_id>gr_vector_to_stream_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>gr_vector_to_stream_0</source_block_id>
-    <sink_block_id>sink</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
+  <block>
+    <key>baz_udp_sink</key>
+    <param>
+      <key>id</key>
+      <value>sink</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>short</value>
+    </param>
+    <param>
+      <key>ipaddr</key>
+      <value>192.168.1.52</value>
+    </param>
+    <param>
+      <key>port</key>
+      <value>28888</value>
+    </param>
+    <param>
+      <key>psize</key>
+      <value>1472</value>
+    </param>
+    <param>
+      <key>eof</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>borip</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>status_in</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(271, 90)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
   <connection>
     <source_block_id>source</source_block_id>
     <sink_block_id>sink</sink_block_id>

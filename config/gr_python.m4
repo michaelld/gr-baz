@@ -30,8 +30,8 @@ AC_DEFUN([PYTHON_DEVEL],[
 
 	AC_ARG_WITH(pythondir,
                     AC_HELP_STRING([--with-pythondir=DIR], 
-                       [python installation directory (cross-compiling) [[default=$prefix/lib/python2.5/site-packages]]]),
-		    [with_pythondir=${withval}],[with_pythondir=${prefix}/lib/python2.5/site-packages])
+                       [python installation directory (cross-compiling) [[default=$prefix/lib/python2.7/site-packages]]]),
+		    [with_pythondir=${withval}],[with_pythondir=${prefix}/lib/python2.7/site-packages])
 
 	# if we're cross-compiling, asking the host python about any of
 	# this is completely useless...

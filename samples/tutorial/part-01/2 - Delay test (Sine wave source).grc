@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='ASCII'?>
 <flow_graph>
-  <timestamp>Fri Jun  1 18:19:30 2012</timestamp>
+  <timestamp>Wed Jan  1 13:24:06 2014</timestamp>
   <block>
     <key>options</key>
     <param>
@@ -42,6 +42,10 @@
     <param>
       <key>run</key>
       <value>True</value>
+    </param>
+    <param>
+      <key>max_nouts</key>
+      <value>0</value>
     </param>
     <param>
       <key>realtime_scheduling</key>
@@ -182,7 +186,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(312, 309)</value>
+      <value>(323, 309)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -190,10 +194,10 @@
     </param>
   </block>
   <block>
-    <key>gr_throttle</key>
+    <key>analog_sig_source_x</key>
     <param>
       <key>id</key>
-      <value>gr_throttle_0</value>
+      <value>analog_sig_source_x_0</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -201,7 +205,62 @@
     </param>
     <param>
       <key>type</key>
-      <value>float</value>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>samp_rate</value>
+    </param>
+    <param>
+      <key>waveform</key>
+      <value>analog.GR_COS_WAVE</value>
+    </param>
+    <param>
+      <key>freq</key>
+      <value>1000</value>
+    </param>
+    <param>
+      <key>amp</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>offset</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(267, 35)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_throttle</key>
+    <param>
+      <key>id</key>
+      <value>blocks_throttle_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
     </param>
     <param>
       <key>samples_per_second</key>
@@ -212,8 +271,67 @@
       <value>1</value>
     </param>
     <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
       <key>_coordinate</key>
-      <value>(309, 90)</value>
+      <value>(489, 67)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>baz_delay</key>
+    <param>
+      <key>id</key>
+      <value>baz_delay_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>delay</key>
+      <value>D</value>
+    </param>
+    <param>
+      <key>num_ports</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(667, 159)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -232,7 +350,7 @@
     </param>
     <param>
       <key>type</key>
-      <value>float</value>
+      <value>complex</value>
     </param>
     <param>
       <key>title</key>
@@ -279,6 +397,18 @@
       <value></value>
     </param>
     <param>
+      <key>trig_mode</key>
+      <value>wxgui.TRIG_MODE_AUTO</value>
+    </param>
+    <param>
+      <key>y_axis_label</key>
+      <value>Counts</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
       <key>_coordinate</key>
       <value>(914, 94)</value>
     </param>
@@ -287,141 +417,26 @@
       <value>0</value>
     </param>
   </block>
-  <block>
-    <key>gr_multiply_const_vxx</key>
-    <param>
-      <key>id</key>
-      <value>gr_multiply_const_vxx_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>const</key>
-      <value>C</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(708, 180)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>baz_delay</key>
-    <param>
-      <key>id</key>
-      <value>baz_delay_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>delay</key>
-      <value>D</value>
-    </param>
-    <param>
-      <key>num_ports</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(521, 180)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>gr_sig_source_x</key>
-    <param>
-      <key>id</key>
-      <value>gr_sig_source_x_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>samp_rate</key>
-      <value>samp_rate</value>
-    </param>
-    <param>
-      <key>waveform</key>
-      <value>gr.GR_COS_WAVE</value>
-    </param>
-    <param>
-      <key>freq</key>
-      <value>1000</value>
-    </param>
-    <param>
-      <key>amp</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>offset</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(99, 58)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
   <connection>
-    <source_block_id>gr_throttle_0</source_block_id>
-    <sink_block_id>baz_delay_0</sink_block_id>
+    <source_block_id>analog_sig_source_x_0</source_block_id>
+    <sink_block_id>blocks_throttle_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>gr_throttle_0</source_block_id>
+    <source_block_id>blocks_throttle_0</source_block_id>
     <sink_block_id>wxgui_scopesink2_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>gr_sig_source_x_0</source_block_id>
-    <sink_block_id>gr_throttle_0</sink_block_id>
+    <source_block_id>blocks_throttle_0</source_block_id>
+    <sink_block_id>baz_delay_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>baz_delay_0</source_block_id>
-    <sink_block_id>gr_multiply_const_vxx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>gr_multiply_const_vxx_0</source_block_id>
     <sink_block_id>wxgui_scopesink2_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>1</sink_key>
